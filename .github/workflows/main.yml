@@ -52,4 +52,10 @@ jobs:
           manifests: |
               ./K8s/deployment.yaml
           images: eliasassuncao100/fake-shop:latest
-           
+      
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Force rollout restart
+        run: kubectl rollout restart deployment fakeshop
+            
