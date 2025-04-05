@@ -66,6 +66,7 @@ spec:
       containers:
       - name: fakeshop
         image: eliasassuncao100/fake-shop:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
         env:
