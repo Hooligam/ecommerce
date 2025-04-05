@@ -1,0 +1,127 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/">Home</a>
+                <a class="breadcrumb-item text-dark" href="/shop">Shop</a>
+                <span class="breadcrumb-item active">Checkout</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Checkout Start -->
+<div class="container-fluid">
+    <form action="{{ url_for('checkout') }}" method="POST">
+        <div class="row px-xl-5">
+            <!-- Dados de Entrega -->
+            <div class="col-lg-8">
+                <h5 class="section-title position-relative text-uppercase mb-3">
+                    <span class="bg-secondary pr-3">Dados de Entrega</span>
+                </h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>Nome</label>
+                            <input class="form-control" type="text" name="first_name" required maxlength="50">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Sobrenome</label>
+                            <input class="form-control" type="text" name="last_name" required maxlength="50">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>E-mail</label>
+                            <input class="form-control" type="email" name="email" required maxlength="100">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Celular</label>
+                            <input class="form-control" type="text" name="mobile" required  maxlength="20">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Endereço 1</label>
+                            <input class="form-control" type="text" name="address1" required maxlength="255">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Endereço 2</label>
+                            <input class="form-control" type="text" name="address2" maxlength="255">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Pais</label>
+                            <select class="custom-select" name="country" required>
+                                <option selected>Brasil</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Cidade</label>
+                            <input class="form-control" type="text" name="city" required maxlength="100">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Estado</label>
+                            <input class="form-control" type="text" name="state" required maxlength="100">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>CEP</label>
+                            <input class="form-control" type="text" name="zip" required maxlength="20">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumo do Pedido e Pagamento -->
+            <div class="col-lg-4">
+                <h5 class="section-title position-relative text-uppercase mb-3">
+                    <span class="bg-secondary pr-3">Resumo do Pedido</span>
+                </h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Total</h5>
+                            <h5>R$ {{ subtotal + 10 }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagamento com Cartão de Crédito -->
+                <h5 class="section-title position-relative text-uppercase mb-3">
+                    <span class="bg-secondary pr-3">Pagamento</span>
+                </h5>
+                <div class="bg-light p-30">
+                    <div class="form-group">
+                        <label for="card_name">Nome no Cartão</label>
+                        <input type="text" class="form-control" id="card_name" name="card_name" required maxlength="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="card_number">Número do Cartão</label>
+                        <input type="text" class="form-control" id="card_number" name="card_number" required maxlength="20">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="expiry_date">Data de Validade</label>
+                            <input type="text" class="form-control" id="expiry_date" name="expiry_date" required maxlength="5" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" id="cvv" name="cvv" required maxlength="3" pattern="\d{3}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão de Submissão do Formulário -->
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block mt-4">Efetuar o Pagamento</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Checkout End -->
+
+{% endblock %}

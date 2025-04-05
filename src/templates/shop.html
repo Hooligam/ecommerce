@@ -1,0 +1,49 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/">Home</a>
+                <span class="breadcrumb-item active">Lista de Produtos</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Shop Product Start -->
+<div class="container">
+    <div class="row justify-content-center">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-3">
+            <div class="product-item bg-light mb-4">
+                <a href="/detail/{{ product.id }}">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="img/{{ product.image }}" alt="{{ product.name }}">
+                    </div>
+                </a>
+                <div class="text-center py-3">
+                    <a class="h6 text-decoration-none text-truncate" href="/detail/{{ product.id }}">
+                        {{ product.name }}
+                    </a>
+                    <div class="d-flex align-items-center justify-content-center mt-2">
+                        <h5>${{ product.price }}</h5>
+                    </div>
+                    <p class="small text-muted">{{ product.short_description }}</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <p class="text-center">No products available.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Shop Product End -->
+
+{% endblock %}

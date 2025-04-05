@@ -1,0 +1,21 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <div class="bg-light p-30">
+                <h3 class="mb-4">Pedido Confirmado</h3>
+                <p>Obrigado por sua compra! Seu número de pedido é <strong>{{ order.order_number }}</strong>.</p>
+                <p>Resumo do Pedido:</p>
+                <ul>
+                    {% for item in order.items %}
+                    <li>{{ item.product.name }} - Quantidade: {{ item.quantity }} - Total: R$ {{ item.price * item.quantity }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ url_for('index') }}" class="btn btn-primary mt-4">Voltar à Página Inicial</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
