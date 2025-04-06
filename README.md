@@ -1,5 +1,5 @@
 # Deploy de Aplicação no Kubernetes com Integração em Pipeline CI/CD
-!
+
 **🎯 Objetivo**:
 
 O objetivo deste projeto é implementar uma solução completa para o deploy de uma aplicação no Kubernetes, utilizando uma pipeline CI/CD que automatize todo o processo de:
@@ -23,7 +23,7 @@ O objetivo deste projeto é implementar uma solução completa para o deploy de 
 
 O primeiro passo é analisar a aplicação para entender como ela funciona, e assim criar um Dockerfile funcional. Em alguns projetos o Dockerfile já é fornecido pelo time de desenvolvimento, mas é essencial saber construir e revisar esse arquivo, pois ele pode conter erros ou precisar de atualizações futuras.
 
-[1](./print/2025-04-05_13-57.png)
+![1](./print/2025-04-05_13-57.png)
 
 ``` FROM python:3.11.0 ```
 Define a imagem base que será usada. Neste caso, é uma imagem oficial do Python na versão 3.11.0.
@@ -69,7 +69,7 @@ Neste passo, criamos os manifestos YAML para orquestrar o deployment da aplicaç
 
 🗂️ Deployment do PostgreSQL
 
-[1](./print/2025-04-05_14-06.png)
+![1](./print/2025-04-05_14-06.png)
 
 Cria um container com a imagem oficial do PostgreSQL.
 
@@ -79,7 +79,7 @@ Expõe a porta 5432, padrão do PostgreSQL.
 
 🔗 Service ClusterIP para PostgreSQL
 
-[1](./print/2025-04-05_14-07.png)
+![1](./print/2025-04-05_14-07.png)
 
 Tipo ClusterIP, ou seja, acessível apenas internamente dentro do cluster.
 
@@ -95,7 +95,7 @@ A porta 80 é usada externamente e mapeada para 5000 (porta usada pela aplicaç�
 Define nodePort: 30001 para permitir acesso direto se necessário.
 
 🛍️ Deployment da aplicação Fake Shop
-[1](./print/2025-04-05_14-22.png)
+![1](./print/2025-04-05_14-22.png)
 
 
 Usa uma imagem customizada hospedada no Docker Hub.
@@ -119,7 +119,7 @@ Manual via workflow_dispatch
 🧪 Pipeline: Estrutura e Explicação
 A pipeline está dividida em dois jobs principais:
 
-[1](./print/2025-04-05_15-32.png)
+![1](./print/2025-04-05_15-32.png)
 
 🚧 Job 1: docker – Build e push da imagem
 
@@ -154,7 +154,7 @@ Neste passo, vamos criar o cluster Kubernetes na DigitalOcean, onde a aplicaçã
 
 🚀 Criação do Cluster
 
-[1](./print/2025-04-05_14-29.png)
+![1](./print/2025-04-05_14-29.png)
 Acesse o Painel da DigitalOcean:
 Faça login na sua conta DigitalOcean e acesse a seção de Kubernetes.
 
@@ -166,7 +166,7 @@ Após a configuração, confirme e aguarde a criação do cluster.
 
 🔗 Configurando o Acesso com Kubeconfig
 
-[1](./print/2025-04-05_14-53.png)
+![1](./print/2025-04-05_14-53.png)
 Para facilitar a manutenção, é essencial configurar seu terminal para se comunicar com o cluster via kubeconfig. Dessa forma, você poderá visualizar os pods, namespaces, logs e realizar atualizações com facilidade.
 
 Baixe o arquivo kubeconfig:
@@ -195,7 +195,7 @@ Utilizamos a DigitalOcean para hospedar o cluster Kubernetes, destacando a impor
 
 - Com tudo isso, obtivemos uma aplicação escalável e resiliente, e nossa pipeline possibilita a troca de versões da aplicação sem downtime.
 
-[1](./print/Gravação%20de%20tela%20de%2005-04-2025%2016_44_51.gif)
+![1](./print/Gravação%20de%20tela%20de%2005-04-2025%2016_44_51.gif)
 
 ⌨️ com ❤️ por [Elias Assunção](https://github.com/Hooligam) 🔥
 
